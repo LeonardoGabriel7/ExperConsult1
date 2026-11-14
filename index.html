@@ -1,0 +1,1834 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exper Consult | Engenharia, Planejamento e Consultoria</title>
+  <meta name="description" content="A Exper Consult é especializada na estruturação estratégica, na construção e operação de plantas industriais, com destaque na projeção de indústrias do ramo alimentício.">
+  <meta name="theme-color" content="#0a1f36">
+
+  <!-- FAVICON (ícone da aba do navegador). Este é um "E" amarelo em fundo azul, embutido no código.
+       Para usar a imagem da empresa: coloque o arquivo em assets/favicon.png e troque a linha abaixo por:
+       <link rel="icon" type="image/png" href="assets/favicon.png"> -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230a1f36'/%3E%3Cpath fill='%23f0a500' d='M20 16H46V23H28V29H43V36H28V42H46V49H20Z'/%3E%3C/svg%3E">
+
+  <!-- Fontes (opcional: se bloquear, o site usa a fonte padrão do sistema) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- =====================================================================
+       COMO ESTE ARQUIVO FUNCIONA
+       • Todas as páginas estão aqui. O menu troca de página sem recarregar
+         (endereços como  #/engenharia  e  #/cases/aves).
+       • Cada página é um bloco <section class="pagina" data-pagina="nome">.
+       • Contato, mapa e faixa de chamada são compartilhados (edite uma vez).
+
+       IMAGENS: ficam na pasta  assets/  ao lado deste arquivo
+         assets/imagens/, assets/imagensClientes/, assets/Bovinos/, Suinos/, Aves/,
+         Desossa/, fatiamento/, industrializados/, Panificação/, videoPlanejamento/
+
+       PUBLICAR (Netlify etc.): envie a PASTA inteira que contém o index.html e a pasta assets.
+       Os nomes de arquivos e pastas são sensíveis a maiúsculas/minúsculas no servidor.
+
+       Para separar em arquivos: tudo dentro de <style> → style.css
+       e tudo dentro de <script> → script.js
+       ===================================================================== -->
+  <style>
+    /* =====================================================================
+       1. VARIÁVEIS  →  mude as cores e medidas do site inteiro aqui
+       ===================================================================== */
+    :root {
+      --cor-azul-escuro: #0a1f36;
+      --cor-azul-medio:  #123a5e;
+      --cor-destaque:    #B8D23B;
+      --cor-destaque-2:  #B8D23B;
+      --cor-texto:       #1e2a38;
+      --cor-texto-suave: #5b6b7c;
+      --cor-fundo-claro: #f3f6f9;
+      --cor-branco:      #ffffff;
+
+      --fonte-titulo: 'Poppins', 'Segoe UI', sans-serif;
+      --fonte-texto:  'Inter', 'Segoe UI', sans-serif;
+
+      --largura-max: 1200px;
+      --raio: 16px;
+      --sombra: 0 10px 30px rgba(10, 31, 54, .10);
+      --sombra-forte: 0 20px 50px rgba(10, 31, 54, .18);
+      --altura-header: 84px;
+    }
+
+    /* =====================================================================
+       2. RESET E BASE
+       ===================================================================== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: var(--altura-header); }
+    body {
+      font-family: var(--fonte-texto);
+      color: var(--cor-texto);
+      line-height: 1.65;
+      background: var(--cor-branco);
+      overflow-x: clip;               /* evita "balançar" para os lados no celular */
+      -webkit-font-smoothing: antialiased;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+    button { font: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+
+    .container { width: 100%; max-width: var(--largura-max); margin: 0 auto; padding: 0 24px; }
+    .secao { padding: 110px 0; }
+    .secao--clara { background: var(--cor-fundo-claro); }
+
+    .secao__topo { text-align: center; max-width: 680px; margin: 0 auto 60px; }
+    .secao__etiqueta {
+      display: inline-block; font-family: var(--fonte-titulo); font-size: 13px; font-weight: 600;
+      letter-spacing: .16em; text-transform: uppercase; color: var(--cor-destaque); margin-bottom: 14px;
+    }
+    .secao__titulo {
+      font-family: var(--fonte-titulo); font-size: clamp(28px, 4vw, 42px);
+      line-height: 1.2; font-weight: 700; color: var(--cor-azul-escuro);
+    }
+    .secao__titulo::after {
+      content: ""; display: block; width: 64px; height: 4px; border-radius: 4px;
+      background: var(--cor-destaque); margin: 20px auto 0;
+    }
+    .secao__intro { max-width: 820px; margin: 0 auto 50px; text-align: center; font-size: 18px; color: var(--cor-texto-suave); }
+
+    /* =====================================================================
+       3. BOTÕES
+       ===================================================================== */
+    .btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 15px 30px; border-radius: 50px;
+      font-family: var(--fonte-titulo); font-weight: 600; font-size: 15px;
+      transition: transform .25s ease, background .25s ease, box-shadow .25s ease, color .25s ease;
+    }
+    .btn--primario { background: var(--cor-destaque); color: var(--cor-azul-escuro); box-shadow: 0 8px 24px rgba(240,165,0,.35); }
+    .btn--primario:hover { background: var(--cor-destaque-2); transform: translateY(-3px); }
+    .btn--contorno { border: 2px solid rgba(255,255,255,.55); color: var(--cor-branco); }
+    .btn--contorno:hover { background: var(--cor-branco); color: var(--cor-azul-escuro); transform: translateY(-3px); }
+
+    /* =====================================================================
+       4. CABEÇALHO E MENU
+       IMPORTANTE: o fundo desfocado do header fica no ::before (e não no próprio header),
+       porque "backdrop-filter" no header quebraria o menu lateral do celular.
+       ===================================================================== */
+    .header {
+      position: fixed; inset: 0 0 auto 0; z-index: 100; height: var(--altura-header);
+      display: flex; align-items: center; transition: height .3s ease;
+    }
+    .header::before {
+      content: ""; position: absolute; inset: 0; z-index: -1; opacity: 0;
+      background: rgba(10, 31, 54, .96); backdrop-filter: blur(10px); box-shadow: 0 6px 24px rgba(0,0,0,.25);
+      transition: opacity .3s ease;
+    }
+    .header--solido { height: 72px; }
+    .header--solido::before { opacity: 1; }
+    .header__inner { display: flex; align-items: center; justify-content: space-between; }
+    .header__logo img { height: 46px; width: auto; }
+
+    .menu { display: flex; align-items: center; gap: 6px; }
+    .menu__link {
+      position: relative; display: block; padding: 10px 16px; border-radius: 8px;
+      font-family: var(--fonte-titulo); font-size: 15px; font-weight: 500; color: rgba(255,255,255,.9);
+      transition: color .2s ease;
+    }
+    .menu__link:hover, .menu__link:focus-visible, .menu__link.ativo { color: var(--cor-destaque); }
+    .menu__link.ativo::after {
+      content: ""; position: absolute; left: 16px; right: 16px; bottom: 3px; height: 2px;
+      background: var(--cor-destaque); border-radius: 2px;
+    }
+
+    .menu__item { position: relative; }
+    .submenu {
+      position: absolute; top: 100%; left: 0; min-width: 210px; padding: 10px;
+      background: var(--cor-branco); border-radius: 12px; box-shadow: var(--sombra-forte);
+      opacity: 0; visibility: hidden; transform: translateY(10px); transition: all .25s ease;
+    }
+    .menu__item:hover .submenu,
+    .menu__item:focus-within .submenu,
+    .menu__item.aberto .submenu { opacity: 1; visibility: visible; transform: translateY(0); }
+    .submenu a { display: block; padding: 11px 14px; border-radius: 8px; font-size: 14.5px; font-weight: 500; color: var(--cor-texto); }
+    .submenu a:hover, .submenu a.ativo { background: var(--cor-fundo-claro); color: var(--cor-azul-medio); }
+    .submenu a.ativo { font-weight: 600; }
+    .seta { display: inline-block; margin-left: 4px; font-size: 11px; }
+
+    .menu__cta {
+      margin-left: 10px; padding: 11px 22px; border-radius: 50px;
+      background: var(--cor-destaque); color: var(--cor-azul-escuro) !important;
+      font-family: var(--fonte-titulo); font-weight: 600; font-size: 14.5px;
+      transition: background .2s ease, transform .2s ease;
+    }
+    .menu__cta:hover { background: var(--cor-destaque-2); transform: translateY(-2px); }
+
+    .hamburguer { display: none; width: 44px; height: 44px; position: relative; z-index: 120; }
+    .hamburguer span {
+      position: absolute; left: 10px; right: 10px; height: 2px; background: var(--cor-branco);
+      border-radius: 2px; transition: transform .3s ease, opacity .3s ease, top .3s ease;
+    }
+    .hamburguer span:nth-child(1) { top: 15px; }
+    .hamburguer span:nth-child(2) { top: 21px; }
+    .hamburguer span:nth-child(3) { top: 27px; }
+    .hamburguer.ativo span:nth-child(1) { top: 21px; transform: rotate(45deg); }
+    .hamburguer.ativo span:nth-child(2) { opacity: 0; }
+    .hamburguer.ativo span:nth-child(3) { top: 21px; transform: rotate(-45deg); }
+
+    /* Fundo escurecido atrás do menu do celular (toque para fechar) */
+    .menu-fundo { display: none; }
+
+    /* =====================================================================
+       5. PÁGINAS (troca de página sem recarregar)
+       ===================================================================== */
+    .pagina { display: none; }
+    .pagina.ativa { display: block; animation: entrarPagina .5s ease; }
+    @keyframes entrarPagina { from { opacity: 0; } to { opacity: 1; } }
+
+    .icone svg { width: 100%; height: 100%; }
+
+    /* =====================================================================
+       6. HERO DA HOME
+       ===================================================================== */
+    .hero {
+      position: relative; min-height: 100vh; display: flex; align-items: center;
+      padding: calc(var(--altura-header) + 60px) 0 100px; color: var(--cor-branco);
+      background:
+        linear-gradient(105deg, rgba(10,31,54,.94) 25%, rgba(10,31,54,.62) 60%, rgba(10,31,54,.35) 100%),
+        url("assets/imagens/Home.png") center / cover no-repeat;
+    }
+    .hero__conteudo { max-width: 760px; }
+    .hero__selo {
+      display: inline-flex; align-items: center; gap: 10px; margin-bottom: 26px;
+      padding: 8px 18px; border-radius: 50px; font-size: 13px; font-weight: 500; letter-spacing: .06em;
+      background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.22); backdrop-filter: blur(6px);
+    }
+    .hero__selo::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--cor-destaque); }
+    .hero__titulo {
+      font-family: var(--fonte-titulo); font-weight: 700; line-height: 1.12;
+      font-size: clamp(38px, 6vw, 68px); margin-bottom: 26px;
+    }
+    .hero__titulo em { font-style: normal; color: var(--cor-destaque); }
+    .hero__texto { font-size: clamp(16px, 1.6vw, 19px); color: rgba(255,255,255,.86); max-width: 660px; margin-bottom: 40px; }
+    .hero__texto strong { color: var(--cor-branco); }
+    .hero__botoes { display: flex; flex-wrap: wrap; gap: 16px; }
+
+    .hero__rolar {
+      position: absolute; left: 50%; bottom: 30px; transform: translateX(-50%);
+      width: 26px; height: 42px; border: 2px solid rgba(255,255,255,.5); border-radius: 20px;
+    }
+    .hero__rolar::after {
+      content: ""; position: absolute; top: 8px; left: 50%; width: 4px; height: 8px; margin-left: -2px;
+      background: var(--cor-destaque); border-radius: 4px; animation: rolar 1.8s infinite;
+    }
+    @keyframes rolar { 0% { opacity: 1; transform: translateY(0); } 100% { opacity: 0; transform: translateY(14px); } }
+
+    /* =====================================================================
+       7. HERO DAS PÁGINAS INTERNAS
+       Para mudar a imagem de fundo: altere o  --fundo  no HTML de cada página.
+       ===================================================================== */
+    .page-hero {
+      position: relative; display: flex; align-items: flex-end; min-height: 58vh; overflow: hidden;
+      padding: calc(var(--altura-header) + 80px) 0 80px; color: var(--cor-branco); background: var(--cor-azul-escuro);
+    }
+    .page-hero--curto { min-height: 46vh; }
+    .page-hero__fundo { position: absolute; inset: 0; background: var(--fundo) center / cover no-repeat; transform: scale(1.04); }
+    .page-hero__video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .page-hero::after {
+      content: ""; position: absolute; inset: 0;
+      background: linear-gradient(100deg, rgba(10,31,54,.95) 20%, rgba(10,31,54,.72) 60%, rgba(10,31,54,.45) 100%);
+    }
+    .page-hero .container { position: relative; z-index: 2; }
+    .migalhas { display: flex; flex-wrap: wrap; gap: 10px; font-size: 14px; color: rgba(255,255,255,.7); margin-bottom: 22px; }
+    .migalhas a:hover { color: var(--cor-destaque); }
+    .migalhas .sep { opacity: .5; }
+    .page-hero__titulo {
+      font-family: var(--fonte-titulo); font-size: clamp(36px, 5.5vw, 62px); font-weight: 700; line-height: 1.12; margin-bottom: 22px;
+    }
+    .page-hero__titulo em { font-style: normal; color: var(--cor-destaque); }
+    .page-hero__texto { max-width: 800px; font-size: clamp(16px, 1.5vw, 19px); color: rgba(255,255,255,.86); }
+
+    /* =====================================================================
+       8. SOLUÇÕES DA HOME — cards de vidro sobre fundo azul-escuro
+       O fundo usa o mesmo azul do rodapé (--cor-azul-escuro) para ficar consistente.
+       ===================================================================== */
+    .solucoes {
+      position: relative; overflow: hidden; padding: 84px 0 96px; color: var(--cor-branco);
+      background:
+        radial-gradient(ellipse at 50% 0%, rgba(18,58,94,.55), transparent 62%),
+        var(--cor-azul-escuro);
+    }
+    /* quadriculado discreto de "planta técnica" */
+    .solucoes::before {
+      content: ""; position: absolute; inset: 0; pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+      background-size: 64px 64px;
+      -webkit-mask-image: radial-gradient(ellipse at 50% 35%, #000 20%, transparent 75%);
+              mask-image: radial-gradient(ellipse at 50% 35%, #000 20%, transparent 75%);
+    }
+    /* brilho amarelo suave no canto */
+    .solucoes::after {
+      content: ""; position: absolute; top: -220px; right: -180px; width: 520px; height: 520px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(240,165,0,.13), transparent 65%); pointer-events: none;
+    }
+    .solucoes .container { position: relative; z-index: 2; }
+    .solucoes .secao__topo { margin-bottom: 44px; }
+    .solucoes .secao__titulo { color: var(--cor-branco); }
+    .solucoes__grade { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; align-items: start; }
+
+    .solucao {
+      position: relative; overflow: hidden; display: flex; flex-direction: column; padding: 36px 30px 32px;
+      border-radius: 24px; border: 1px solid rgba(255,255,255,.13);
+      background: linear-gradient(165deg, rgba(255,255,255,.09) 0%, rgba(255,255,255,.025) 100%);
+      transition: transform .45s ease, border-color .45s ease, box-shadow .45s ease;
+    }
+    .solucao:nth-child(2) { margin-top: 36px; }          /* card do meio mais baixo = visual dinâmico */
+    .solucao::before {
+      content: ""; position: absolute; top: 0; left: 0; height: 4px; width: 0;
+      background: var(--cor-destaque); transition: width .6s ease;
+    }
+    .solucao:hover { transform: translateY(-10px); border-color: rgba(240,165,0,.55); box-shadow: 0 26px 60px rgba(0,0,0,.38); }
+    .solucao:hover::before { width: 100%; }
+    .solucao__numero {
+      position: absolute; top: 18px; right: 26px; font-family: var(--fonte-titulo); font-size: 68px; font-weight: 700;
+      line-height: 1; color: transparent; -webkit-text-stroke: 1.5px rgba(255,255,255,.16);
+    }
+    .solucao__icone {
+      display: grid; place-items: center; width: 68px; height: 68px; padding: 18px; margin-bottom: 26px; border-radius: 20px;
+      background: linear-gradient(135deg, var(--cor-destaque-2), var(--cor-destaque)); color: var(--cor-azul-escuro);
+      box-shadow: 0 12px 28px rgba(240,165,0,.3); transition: transform .45s ease;
+    }
+    .solucao:hover .solucao__icone { transform: rotate(-8deg) scale(1.08); }
+    .solucao__titulo { font-family: var(--fonte-titulo); font-size: 26px; line-height: 1.15; margin-bottom: 14px; }
+    .solucao__titulo::after {
+      content: ""; display: block; width: 40px; height: 4px; border-radius: 4px; margin-top: 14px;
+      background: var(--cor-destaque); transition: width .4s ease;
+    }
+    .solucao:hover .solucao__titulo::after { width: 88px; }
+    .solucao__texto { font-size: 15.5px; color: rgba(255,255,255,.8); margin-bottom: 26px; }
+    .solucao__link { margin-top: auto; display: inline-flex; align-items: center; gap: 14px; font-family: var(--fonte-titulo); font-weight: 600; font-size: 15px; }
+    .solucao__seta {
+      display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; font-size: 18px;
+      background: var(--cor-destaque); color: var(--cor-azul-escuro); transition: transform .3s ease;
+    }
+    .solucao:hover .solucao__seta { transform: translateX(8px); }
+
+    /* =====================================================================
+       9. BLOCOS "IMAGEM + TEXTO" (Engenharia, Assessoria, Sobre nós)
+       Use  destaque--inverso  para alternar o lado da imagem.
+       ===================================================================== */
+    .destaque { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; padding: 50px 0; }
+    .destaque--inverso .destaque__midia { order: 2; }
+    .destaque__midia { position: relative; }
+    .destaque__midia::before {
+      content: ""; position: absolute; inset: 22px -22px -22px 22px; z-index: 0;
+      border: 3px solid var(--cor-destaque); border-radius: var(--raio); opacity: .45; transition: opacity .4s ease;
+    }
+    .destaque--inverso .destaque__midia::before { inset: 22px 22px -22px -22px; }
+    .destaque:hover .destaque__midia::before { opacity: .95; }
+    .destaque__midia img {
+      position: relative; z-index: 1; width: 100%; aspect-ratio: 4 / 3; object-fit: cover;
+      border-radius: var(--raio); box-shadow: var(--sombra-forte);
+    }
+    .destaque__midia img.contido { object-fit: contain; background: var(--cor-branco); padding: 30px; }
+    /* "natural" = mostra a foto inteira, sem cortar (usado na foto do consultor) */
+    .destaque__midia img.natural { aspect-ratio: auto; height: auto; object-fit: initial; }
+    .destaque__numero {
+      display: block; font-family: var(--fonte-titulo); font-size: 14px; font-weight: 600;
+      letter-spacing: .16em; text-transform: uppercase; color: var(--cor-destaque); margin-bottom: 12px;
+    }
+    .destaque__titulo { font-family: var(--fonte-titulo); font-size: clamp(26px, 3vw, 36px); line-height: 1.2; color: var(--cor-azul-escuro); margin-bottom: 18px; }
+    .destaque__texto { color: var(--cor-texto-suave); font-size: 17px; }
+    .destaque__texto + .destaque__texto { margin-top: 14px; }
+    .destaque__texto strong { color: var(--cor-azul-escuro); font-weight: 600; }
+    .destaque__lista { display: grid; gap: 14px; margin: 8px 0; }
+    .destaque__lista li { position: relative; padding-left: 36px; color: var(--cor-texto-suave); font-size: 17px; }
+    .destaque__lista li::before {
+      content: "✓"; position: absolute; left: 0; top: 2px; width: 24px; height: 24px; border-radius: 50%;
+      display: grid; place-items: center; font-size: 13px; font-weight: 700;
+      background: rgba(240,165,0,.18); color: #b67a00;
+    }
+    .destaque__lista strong { color: var(--cor-azul-escuro); font-weight: 600; }
+
+    /* =====================================================================
+       10. SERVIÇOS (Engenharia) — seção escura com listas
+       ===================================================================== */
+    .servicos { background: var(--cor-azul-escuro); }
+    .servicos .secao__titulo { color: var(--cor-branco); }
+    .servicos__grade { columns: 3 320px; column-gap: 28px; }
+    .servico {
+      break-inside: avoid; margin-bottom: 28px; padding: 28px; border-radius: var(--raio);
+      background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1);
+      transition: border-color .3s ease, background .3s ease, transform .3s ease;
+    }
+    .servico:hover { border-color: var(--cor-destaque); background: rgba(255,255,255,.08); transform: translateY(-4px); }
+    .servico__titulo { font-family: var(--fonte-titulo); font-size: 19px; line-height: 1.3; color: var(--cor-destaque); margin-bottom: 14px; }
+    .servico li {
+      position: relative; padding: 8px 0 8px 28px; font-size: 15px; color: rgba(255,255,255,.84);
+      border-top: 1px dashed rgba(255,255,255,.12);
+    }
+    .servico li:first-child { border-top: 0; }
+    .servico li::before { content: "✓"; position: absolute; left: 0; top: 8px; color: var(--cor-destaque); font-weight: 700; }
+
+    /* =====================================================================
+       11. ETAPAS DE PLANEJAMENTO (cards com ícones — sem fotos)
+       ===================================================================== */
+    .etapas { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .etapa {
+      position: relative; overflow: hidden; display: flex; flex-direction: column; min-height: 230px; padding: 34px 30px 30px;
+      background: var(--cor-branco); border: 1px solid #e6ecf2; border-radius: 22px; box-shadow: var(--sombra);
+      transition: transform .35s ease, box-shadow .35s ease;
+    }
+    .etapa::before {
+      content: ""; position: absolute; left: 0; top: 0; height: 4px; width: 0; background: var(--cor-destaque); transition: width .5s ease;
+    }
+    .etapa:hover { transform: translateY(-8px); box-shadow: var(--sombra-forte); }
+    .etapa:hover::before { width: 100%; }
+    .etapa__numero {
+      position: absolute; top: 20px; right: 28px; font-family: var(--fonte-titulo); font-size: 56px; font-weight: 700;
+      line-height: 1; color: rgba(10,31,54,.07);
+    }
+    .etapa__icone {
+      display: grid; place-items: center; width: 64px; height: 64px; padding: 17px; margin-bottom: 26px; border-radius: 18px;
+      background: linear-gradient(135deg, var(--cor-azul-escuro), var(--cor-azul-medio)); color: var(--cor-destaque);
+      transition: all .35s ease;
+    }
+    .etapa:hover .etapa__icone { background: var(--cor-destaque); color: var(--cor-azul-escuro); transform: rotate(-6deg) scale(1.05); }
+    .etapa__titulo { margin-top: auto; font-family: var(--fonte-titulo); font-size: 21px; line-height: 1.3; color: var(--cor-azul-escuro); }
+
+    .etapa--destaque {
+      grid-column: 1 / -1; flex-direction: row; align-items: center; gap: 32px; min-height: 0; padding: 46px 50px;
+      background: linear-gradient(120deg, var(--cor-azul-escuro), var(--cor-azul-medio)); border: 0;
+    }
+    .etapa--destaque::after {
+      content: ""; position: absolute; right: -80px; top: -120px; width: 380px; height: 380px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(240,165,0,.28), transparent 65%);
+    }
+    .etapa--destaque .etapa__icone { flex: 0 0 90px; width: 90px; height: 90px; padding: 22px; margin: 0; border-radius: 24px; background: var(--cor-destaque); color: var(--cor-azul-escuro); position: relative; z-index: 1; }
+    .etapa--destaque .etapa__titulo { margin: 0; font-size: clamp(26px, 3.4vw, 40px); color: var(--cor-branco); position: relative; z-index: 1; }
+    .etapa--destaque .etapa__numero { top: 50%; right: 50px; transform: translateY(-50%); font-size: 130px; color: rgba(255,255,255,.07); z-index: 0; }
+
+    /* =====================================================================
+       12. NÚMEROS ANIMADOS, CONTADORES E EQUIPE
+       Qualquer <span class="contar" data-alvo="20" data-prefixo="+"> conta de 0 até o valor ao aparecer na tela.
+       ===================================================================== */
+    .numeros { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: -64px; position: relative; z-index: 5; }
+    .numero {
+      background: var(--cor-branco); border-radius: var(--raio); padding: 32px 24px; text-align: center;
+      box-shadow: var(--sombra-forte); border-top: 4px solid var(--cor-destaque);
+    }
+    .numero__valor { font-family: var(--fonte-titulo); font-size: 46px; font-weight: 700; line-height: 1; color: var(--cor-azul-escuro); }
+    .numero__rotulo { margin-top: 10px; font-size: 14.5px; color: var(--cor-texto-suave); }
+
+    /* Faixa de contadores da home (dentro de Nossos Clientes) */
+    .contadores { display: grid; grid-template-columns: repeat(3, 1fr); max-width: 860px; margin: -16px auto 54px; }
+    .contador { text-align: center; padding: 6px 16px; }
+    .contador + .contador { border-left: 1px solid #d9e1e9; }
+    .contador__valor { display: block; font-family: var(--fonte-titulo); font-size: clamp(34px, 5vw, 56px); font-weight: 700; line-height: 1; color: var(--cor-azul-escuro); }
+    .contador__rotulo { display: block; margin-top: 10px; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--cor-texto-suave); }
+
+    .equipe { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 14px; }
+    .equipe__item {
+      display: flex; align-items: center; gap: 16px; padding: 16px 18px; background: var(--cor-branco);
+      border: 1px solid #e6ecf2; border-radius: 14px;
+      transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+    }
+    .equipe__item:hover { transform: translateY(-4px); box-shadow: var(--sombra); border-color: var(--cor-destaque); }
+    .equipe__marca {
+      flex: 0 0 46px; height: 46px; border-radius: 12px; display: grid; place-items: center;
+      background: var(--cor-azul-escuro); color: var(--cor-destaque); font-size: 20px; font-weight: 700;
+    }
+    .equipe__nome { font-size: 15px; line-height: 1.4; color: var(--cor-texto); }
+
+    /* =====================================================================
+       13. GALERIA DE FOTOS (com ampliação ao clicar)
+       ===================================================================== */
+    .galeria { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+    .galeria--tres { grid-template-columns: repeat(3, 1fr); }
+    .galeria__item { overflow: hidden; border-radius: 12px; aspect-ratio: 4 / 3; background: var(--cor-fundo-claro); }
+    .galeria__item img { width: 100%; height: 100%; object-fit: cover; cursor: zoom-in; transition: transform .5s ease; }
+    .galeria__item:hover img { transform: scale(1.08); }
+    .galeria--destaque .galeria__item:first-child { grid-column: span 2; grid-row: span 2; aspect-ratio: auto; }
+
+    .lightbox {
+      position: fixed; inset: 0; z-index: 300; display: flex; align-items: center; justify-content: center;
+      background: rgba(5, 14, 26, .94); padding: 30px;
+    }
+    .lightbox[hidden] { display: none; }
+    .lightbox__img { max-width: 92vw; max-height: 86vh; border-radius: 10px; box-shadow: 0 20px 60px rgba(0,0,0,.5); }
+    .lightbox__fechar, .lightbox__nav {
+      position: absolute; width: 50px; height: 50px; border-radius: 50%; display: grid; place-items: center;
+      background: rgba(255,255,255,.12); color: #fff; font-size: 24px; transition: background .2s ease;
+    }
+    .lightbox__fechar:hover, .lightbox__nav:hover { background: var(--cor-destaque); color: var(--cor-azul-escuro); }
+    .lightbox__fechar { top: 24px; right: 24px; }
+    .lightbox__nav--ant { left: 24px; top: 50%; transform: translateY(-50%); }
+    .lightbox__nav--prox { right: 24px; top: 50%; transform: translateY(-50%); }
+
+    /* =====================================================================
+       14. CASES
+       ===================================================================== */
+    .chips {
+      position: sticky; top: 72px; z-index: 50; display: flex; gap: 12px; overflow-x: auto; padding: 14px 24px;
+      background: rgba(10,31,54,.95); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,.08);
+      box-shadow: 0 10px 30px rgba(10,31,54,.18); scrollbar-width: none;
+    }
+    .chips::-webkit-scrollbar { display: none; }
+    .chip:first-child { margin-left: auto; }
+    .chip:last-child  { margin-right: auto; }
+    .chip {
+      flex: 0 0 auto; display: inline-flex; align-items: center; gap: 10px; padding: 8px 20px 8px 8px; border-radius: 50px;
+      font-family: var(--fonte-titulo); font-size: 14px; font-weight: 500; white-space: nowrap; color: var(--cor-branco);
+      background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.16);
+      transition: background .3s ease, color .3s ease, transform .3s ease, border-color .3s ease;
+    }
+    .chip__num {
+      display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%;
+      font-size: 12px; font-weight: 700; background: rgba(240,165,0,.2); color: var(--cor-destaque); transition: all .3s ease;
+    }
+    .chip:hover { border-color: var(--cor-destaque); transform: translateY(-2px); }
+    .chip.ativo { background: var(--cor-destaque); border-color: var(--cor-destaque); color: var(--cor-azul-escuro); }
+    .chip.ativo .chip__num { background: var(--cor-azul-escuro); color: var(--cor-destaque); }
+
+    .case { padding: 90px 0; scroll-margin-top: 70px; }
+    .case:nth-child(even) { background: var(--cor-fundo-claro); }
+    .case__cabecalho { display: grid; grid-template-columns: auto 1fr; gap: 28px; align-items: start; margin-bottom: 40px; }
+    .case__numero { font-family: var(--fonte-titulo); font-size: 72px; font-weight: 700; line-height: .9; color: var(--cor-destaque); opacity: .4; }
+    .case__titulo { font-family: var(--fonte-titulo); font-size: clamp(28px, 3.6vw, 40px); line-height: 1.2; color: var(--cor-azul-escuro); }
+    .case__texto { max-width: 840px; margin-top: 14px; font-size: 17px; color: var(--cor-texto-suave); }
+    .case__texto strong { color: var(--cor-azul-escuro); font-weight: 600; }
+    .case__clientes-titulo {
+      margin: 46px 0 20px; font-family: var(--fonte-titulo); font-size: 15px; font-weight: 600;
+      letter-spacing: .1em; text-transform: uppercase; color: var(--cor-azul-escuro);
+    }
+
+    /* =====================================================================
+       15. CLIENTES (carrossel da home + grade da página Clientes)
+       O carrossel NÃO para ao passar o mouse. Logos coloridos.
+       ===================================================================== */
+    .clientes { background: var(--cor-fundo-claro); overflow: hidden; }
+    .marquee {
+      display: flex; flex-direction: column; gap: 22px;
+      -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+              mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+    }
+    .marquee__linha { overflow: hidden; }
+    .marquee__trilho { display: flex; gap: 22px; width: max-content; animation: deslizar 70s linear infinite; }
+    .marquee__linha:nth-child(2) .marquee__trilho { animation-direction: reverse; animation-duration: 80s; }
+    .marquee__linha:nth-child(3) .marquee__trilho { animation-duration: 90s; }
+    @keyframes deslizar { to { transform: translateX(calc(-50% - 11px)); } }
+
+    .logo-cliente {
+      flex: 0 0 auto; width: 170px; height: 92px; display: grid; place-items: center; padding: 16px 20px;
+      background: var(--cor-branco); border-radius: 14px; border: 1px solid #e6ecf2; box-shadow: 0 4px 14px rgba(10,31,54,.05);
+      transition: box-shadow .25s ease;
+    }
+    .logo-cliente img { max-width: 100%; max-height: 56px; object-fit: contain; transition: transform .3s ease; }
+    .logo-cliente:hover { box-shadow: var(--sombra); }
+    .logo-cliente:hover img { transform: scale(1.08); }
+
+    .logos { display: flex; flex-wrap: wrap; gap: 16px; }
+    .logos--centro { justify-content: center; }
+
+    /* =====================================================================
+       16. FAIXA DE CHAMADA (CTA)
+       ===================================================================== */
+    .cta { background: linear-gradient(110deg, var(--cor-azul-escuro), var(--cor-azul-medio)); color: var(--cor-branco); padding: 72px 0; }
+    .cta__inner { display: flex; flex-wrap: wrap; gap: 30px; align-items: center; justify-content: space-between; }
+    .cta__titulo { max-width: 640px; font-family: var(--fonte-titulo); font-size: clamp(24px, 3vw, 34px); line-height: 1.25; }
+    .cta__titulo em { font-style: normal; color: var(--cor-destaque); }
+
+    /* =====================================================================
+       17. CONTATO + MAPA
+       ===================================================================== */
+    .contato { background: var(--cor-branco); }
+    .contato__grade { display: grid; grid-template-columns: 1fr 1.2fr; gap: 50px; align-items: stretch; }
+    .contato__lista { display: flex; flex-direction: column; gap: 18px; }
+    .contato__item {
+      display: flex; align-items: center; gap: 20px; padding: 22px 26px;
+      background: var(--cor-fundo-claro); border-radius: var(--raio); border: 1px solid transparent; transition: all .3s ease;
+    }
+    .contato__item:hover { background: var(--cor-branco); border-color: var(--cor-destaque); box-shadow: var(--sombra); transform: translateX(6px); }
+    .contato__icone {
+      flex: 0 0 56px; height: 56px; border-radius: 14px; display: grid; place-items: center;
+      background: var(--cor-azul-escuro); color: var(--cor-destaque);
+    }
+    .contato__icone svg { width: 26px; height: 26px; fill: currentColor; }
+    .contato__rotulo { display: block; font-size: 13px; color: var(--cor-texto-suave); text-transform: uppercase; letter-spacing: .08em; }
+    .contato__valor { display: block; font-family: var(--fonte-titulo); font-weight: 600; font-size: 18px; color: var(--cor-azul-escuro); word-break: break-all; }
+    .contato__subtitulo { font-family: var(--fonte-titulo); font-size: 22px; color: var(--cor-azul-escuro); margin-bottom: 18px; }
+    .mapa { border-radius: var(--raio); overflow: hidden; box-shadow: var(--sombra-forte); min-height: 420px; }
+    .mapa iframe { width: 100%; height: 100%; min-height: 420px; border: 0; display: block; }
+
+    /* =====================================================================
+       18. RODAPÉ
+       ===================================================================== */
+    .rodape { background: var(--cor-azul-escuro); color: rgba(255,255,255,.75); padding: 60px 0 30px; }
+    .rodape__topo { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 30px; padding-bottom: 36px; border-bottom: 1px solid rgba(255,255,255,.12); }
+    .rodape__logo img { height: 52px; width: auto; }
+    .rodape__nav { display: flex; flex-wrap: wrap; gap: 8px 26px; font-size: 14.5px; }
+    .rodape__nav a:hover { color: var(--cor-destaque); }
+    .rodape__copy { padding-top: 26px; font-size: 13.5px; text-align: center; }
+
+    /* =====================================================================
+       19. ANIMAÇÃO AO ROLAR (só ativa se o JavaScript carregar)
+       ===================================================================== */
+    .js .aparecer { opacity: 0; transform: translateY(30px); transition: opacity .8s ease, transform .8s ease; }
+    .js .aparecer.visivel { opacity: 1; transform: none; }
+
+    /* =====================================================================
+       20. RESPONSIVO
+       ===================================================================== */
+    @media (max-width: 1024px) {
+      .contato__grade { grid-template-columns: 1fr; }
+      .destaque { gap: 50px; }
+      .etapas { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 900px) {
+      /* Menu lateral do celular */
+      .hamburguer { display: block; }
+      .menu {
+        position: fixed; inset: 0 0 0 auto; width: min(340px, 85vw); flex-direction: column; align-items: stretch;
+        gap: 4px; padding: 100px 24px 30px; background: var(--cor-azul-escuro);
+        transform: translateX(100%); transition: transform .35s ease; box-shadow: -10px 0 40px rgba(0,0,0,.35);
+        overflow-y: auto;
+      }
+      .menu.aberto { transform: translateX(0); }
+      .menu-fundo {
+        display: block; position: fixed; inset: 0; z-index: 99; background: rgba(5,14,26,.6);
+        opacity: 0; visibility: hidden; transition: opacity .3s ease, visibility .3s ease;
+      }
+      .menu-fundo.ativo { opacity: 1; visibility: visible; }
+      .menu__link { padding: 14px 12px; font-size: 16px; }
+      .menu__link.ativo::after { left: 12px; right: auto; width: 28px; bottom: 6px; }
+      .submenu { position: static; opacity: 1; visibility: visible; transform: none; background: transparent; box-shadow: none; padding: 0 0 0 14px; display: none; }
+      .menu__item.aberto .submenu { display: block; }
+      .submenu a { color: rgba(255,255,255,.8); }
+      .submenu a:hover, .submenu a.ativo { background: rgba(255,255,255,.08); color: var(--cor-destaque); }
+      .menu__cta { margin: 14px 0 0; text-align: center; }
+
+      .solucoes { padding: 64px 0 72px; }
+      .solucoes__grade { grid-template-columns: 1fr; }
+      .solucao:nth-child(2) { margin-top: 0; }
+
+      .destaque { grid-template-columns: 1fr; padding: 34px 0; }
+      .destaque--inverso .destaque__midia { order: 0; }
+      .destaque__midia::before { inset: 14px -10px -14px 10px !important; }
+      .numeros { grid-template-columns: 1fr; margin-top: -40px; }
+      .galeria { grid-template-columns: repeat(2, 1fr); }
+      .galeria--tres { grid-template-columns: repeat(2, 1fr); }
+      .case__cabecalho { grid-template-columns: 1fr; gap: 6px; }
+      .case__numero { font-size: 52px; }
+    }
+
+    @media (max-width: 640px) {
+      .secao { padding: 80px 0; }
+      .solucoes { padding: 64px 0 72px; }
+      .header__logo img { height: 40px; }
+      .etapas { grid-template-columns: 1fr; }
+      .etapa--destaque { flex-direction: column; align-items: flex-start; padding: 36px 28px; }
+      .etapa--destaque .etapa__numero { font-size: 90px; top: 24px; transform: none; }
+      .contadores { margin-bottom: 40px; }
+      .contador { padding: 6px 8px; }
+      .contador__rotulo { font-size: 11px; letter-spacing: .04em; }
+      .hero__botoes .btn { width: 100%; justify-content: center; }
+      .logo-cliente { width: 140px; height: 80px; }
+      .rodape__topo { justify-content: center; text-align: center; }
+      .page-hero { min-height: 50vh; padding-bottom: 56px; }
+      .lightbox__nav { width: 42px; height: 42px; }
+      .chips { padding: 12px 16px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+      .js .aparecer { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Fundo escurecido atrás do menu do celular -->
+  <div class="menu-fundo" id="menuFundo"></div>
+
+  <!-- =====================================================================
+       CABEÇALHO / MENU (igual em todas as páginas)
+       Para criar um novo item: copie um <a class="menu__link"> e ajuste
+       href="#/nome-da-pagina" e data-rota="nome-da-pagina".
+       ===================================================================== -->
+  <header class="header" id="header">
+    <div class="container header__inner">
+
+      <a href="#/home" class="header__logo" aria-label="Exper Consult - Início">
+        <img src="assets/imagens/Logo%20Exper%20Consult%20(Branco).png" alt="Exper Consult">
+      </a>
+
+      <button class="hamburguer" id="hamburguer" aria-label="Abrir menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="menu" id="menu" aria-label="Menu principal">
+        <a href="#/home" class="menu__link" data-rota="home">Home</a>
+
+        <div class="menu__item" id="itemSolucoes">
+          <a href="#/home/solucoes" class="menu__link" id="linkSolucoes">Soluções <span class="seta">▾</span></a>
+          <div class="submenu">
+            <a href="#/engenharia" data-rota="engenharia">Engenharia</a>
+            <a href="#/planejamento" data-rota="planejamento">Planejamento</a>
+            <a href="#/assessoria" data-rota="assessoria">Assessoria</a>
+          </div>
+        </div>
+
+        <a href="#/sobre-nos" class="menu__link" data-rota="sobre-nos">Sobre nós</a>
+        <a href="#/clientes" class="menu__link" data-rota="clientes">Clientes</a>
+        <a href="#/cases" class="menu__link" data-rota="cases">Cases</a>
+        <a href="#/contato" class="menu__link" data-rota="contato">Contato</a>
+        <a href="https://3d.construmanager.com.br" class="menu__cta" target="_blank" rel="noopener">Área do Cliente</a>
+      </nav>
+
+    </div>
+  </header>
+
+  <main>
+
+    <!-- =================================================================
+         PÁGINA: HOME
+         ================================================================= -->
+    <section class="pagina ativa" data-pagina="home">
+
+      <div class="hero">
+        <div class="container">
+          <div class="hero__conteudo">
+            <span class="hero__selo">Engenharia · Planejamento · Consultoria</span>
+            <h1 class="hero__titulo">Excelência em <em>Planejamento e Consultoria</em></h1>
+            <p class="hero__texto">
+              A <strong>Exper Consult</strong> opera com amplo mix de soluções na busca de resultados rápidos e de qualidade.
+              Especializados na estruturação estratégica, na construção e operação de plantas industriais, somos destaque
+              na projeção de indústrias do ramo alimentício.
+            </p>
+            <div class="hero__botoes">
+              <a href="#/home/solucoes" class="btn btn--primario">Conheça nossas soluções →</a>
+              <a href="#/home/contato" class="btn btn--contorno">Fale conosco</a>
+            </div>
+          </div>
+        </div>
+        <div class="hero__rolar" aria-hidden="true"></div>
+      </div>
+
+      <!-- SOLUÇÕES: para criar um novo card, copie um bloco <article class="solucao"> inteiro.
+           O ícone vem de data-icone="nome" (veja a lista ICONES no JavaScript). -->
+      <section class="secao solucoes" id="home-solucoes">
+        <div class="container">
+
+          <div class="secao__topo aparecer">
+            <span class="secao__etiqueta">O que fazemos</span>
+            <h2 class="secao__titulo">Conheça nossas soluções</h2>
+          </div>
+
+          <div class="solucoes__grade">
+
+            <article class="solucao aparecer">
+              <span class="solucao__numero">01</span>
+              <span class="solucao__icone icone" data-icone="regua"></span>
+              <h3 class="solucao__titulo">Engenharia</h3>
+              <p class="solucao__texto">Elaboração dos projetos arquitetônicos, estruturais e complementares. Realizando a integração de todas as disciplinas com a compatibilização de projetos gerando a melhor solução com menor custo.</p>
+              <a href="#/engenharia" class="solucao__link">+ Saiba mais <span class="solucao__seta">→</span></a>
+            </article>
+
+            <article class="solucao aparecer">
+              <span class="solucao__numero">02</span>
+              <span class="solucao__icone icone" data-icone="alvo"></span>
+              <h3 class="solucao__titulo">Planejamento</h3>
+              <p class="solucao__texto">Estratégias inteligentes, validação e otimização de processos e caminhos, visando pontos mercadológicos, técnicos, financeiros, jurídicos e organizacionais.</p>
+              <a href="#/planejamento" class="solucao__link">+ Saiba mais <span class="solucao__seta">→</span></a>
+            </article>
+
+            <article class="solucao aparecer">
+              <span class="solucao__numero">03</span>
+              <span class="solucao__icone icone" data-icone="escudo"></span>
+              <h3 class="solucao__titulo">Assessoria</h3>
+              <p class="solucao__texto">Gerenciamento, prevenção, programas e treinamentos que potencializam e ampliam as melhorias aplicadas aos projetos e processos, visando a busca de excelência plena em todos os aspectos.</p>
+              <a href="#/assessoria" class="solucao__link">+ Saiba mais <span class="solucao__seta">→</span></a>
+            </article>
+
+          </div>
+        </div>
+      </section>
+
+      <section class="secao clientes" id="home-clientes">
+        <div class="container">
+          <div class="secao__topo aparecer">
+            <span class="secao__etiqueta">Quem confia na Exper</span>
+            <h2 class="secao__titulo">Nossos Clientes</h2>
+          </div>
+
+          <!-- Contadores animados: data-fonte="clientes" e "cases" calculam o número sozinhos
+               (a partir das listas CLIENTES e CASES). Para um número fixo, use data-alvo="123". -->
+          <div class="contadores aparecer">
+            <div class="contador">
+              <span class="contador__valor"><span class="contar" data-alvo="20" data-prefixo="+">+20</span></span>
+              <span class="contador__rotulo">anos de história</span>
+            </div>
+            <div class="contador">
+              <span class="contador__valor"><span class="contar" data-fonte="clientes" data-prefixo="+">+120</span></span>
+              <span class="contador__rotulo">clientes atendidos</span>
+            </div>
+            <div class="contador">
+              <span class="contador__valor"><span class="contar" data-fonte="cases">7</span></span>
+              <span class="contador__rotulo">segmentos de atuação</span>
+            </div>
+          </div>
+        </div>
+        <div class="marquee" id="marquee" aria-label="Logos dos clientes"></div>
+      </section>
+
+      <div id="home-contato" data-incluir="contato"></div>
+    </section>
+
+
+    <!-- =================================================================
+         PÁGINA: ENGENHARIA
+         ================================================================= -->
+    <section class="pagina" data-pagina="engenharia">
+
+      <header class="page-hero" style="--fundo: url('assets/imagens/Engenharia.png')">
+        <div class="page-hero__fundo"></div>
+        <div class="container">
+          <nav class="migalhas" aria-label="Você está em"><a href="#/home">Home</a><span class="sep">/</span><a href="#/home/solucoes">Soluções</a><span class="sep">/</span><span>Engenharia</span></nav>
+          <h1 class="page-hero__titulo"><em>Engenharia</em></h1>
+          <p class="page-hero__texto">Materialização de uma ideia na realidade, através de técnicas, desenhos e modelos.</p>
+        </div>
+      </header>
+
+      <section class="secao">
+        <div class="container">
+          <div class="secao__topo aparecer">
+            <span class="secao__etiqueta">Disciplinas</span>
+            <h2 class="secao__titulo">Conheça nossas soluções em Engenharia</h2>
+          </div>
+
+          <article class="destaque aparecer">
+            <div class="destaque__midia"><img src="assets/imagens/1.jpg" alt="Arquitetura e Conceito" loading="lazy"></div>
+            <div>
+              <span class="destaque__numero">01</span>
+              <h3 class="destaque__titulo">Arquitetura e Conceito</h3>
+              <p class="destaque__texto"><strong>Materialização de uma ideia na realidade</strong>, através de técnicas, desenhos e modelos. O detalhamento dos desenhos envolve definições de tipo de estrutura, definição dos materiais e elementos construtivos, cálculos de iluminação e ventilação natural, pé direito dos ambientes etc. O que auxilia no desenvolvimento dos projetos executivos complementares e para os projetos de aprovações em órgãos descritos no item de aprovações.</p>
+            </div>
+          </article>
+
+          <article class="destaque destaque--inverso aparecer">
+            <div class="destaque__midia"><img src="assets/imagens/2.jpg" alt="Engenharia Civil" loading="lazy"></div>
+            <div>
+              <span class="destaque__numero">02</span>
+              <h3 class="destaque__titulo">Engenharia Civil</h3>
+              <ul class="destaque__lista">
+                <li><strong>Projetos e acompanhamento</strong> de todas as etapas da execução.</li>
+                <li><strong>Análise e estudos das características gerais da sua edificação</strong> visando segurança e qualidade da fundação ao acabamento.</li>
+                <li><strong>Desenvolvimento e especificação dos projetos complementares</strong>, detalhando redes de instalações elétricas, hidráulicas e sanitárias.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="destaque aparecer">
+            <div class="destaque__midia"><img src="assets/imagens/3.jpg" alt="Engenharia de Alimentos" loading="lazy"></div>
+            <div>
+              <span class="destaque__numero">03</span>
+              <h3 class="destaque__titulo">Engenharia de Alimentos</h3>
+              <p class="destaque__texto">Uso de técnicas e conhecimentos avançados no processo de <strong>fabricação, conservação, armazenagem e transporte de alimentos industrializados.</strong></p>
+            </div>
+          </article>
+
+          <article class="destaque destaque--inverso aparecer">
+            <div class="destaque__midia"><img src="assets/imagens/4.jpg" alt="Engenharia Mecânica" loading="lazy"></div>
+            <div>
+              <span class="destaque__numero">04</span>
+              <h3 class="destaque__titulo">Engenharia Mecânica</h3>
+              <p class="destaque__texto"><strong>Amplo conhecimento a respeito de máquinas e equipamentos utilizados na indústria</strong>, buscando trazer as melhores tecnologias possíveis para que os clientes alcancem a maior eficiência em sua produção.</p>
+            </div>
+          </article>
+
+          <article class="destaque aparecer">
+            <div class="destaque__midia"><img src="assets/imagens/5.jpg" alt="Engenharia de Processos industriais" loading="lazy"></div>
+            <div>
+              <span class="destaque__numero">05</span>
+              <h3 class="destaque__titulo">Engenharia de Processos industriais</h3>
+              <p class="destaque__texto"><strong>Condução de projetos e a organização do trabalho</strong>, determinando os métodos que alcançarão os melhores resultados de produção.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="secao servicos">
+        <div class="container">
+          <div class="secao__topo aparecer">
+            <span class="secao__etiqueta">O que entregamos</span>
+            <h2 class="secao__titulo">Serviços</h2>
+          </div>
+
+          <div class="servicos__grade">
+
+            <div class="servico aparecer">
+              <h3 class="servico__titulo">Projeto Arquitetônico</h3>
+              <ul><li>Conceito</li><li>Básico</li><li>Executivo</li></ul>
+            </div>
+
+            <div class="servico aparecer">
+              <h3 class="servico__titulo">Projeto Estrutural</h3>
+              <ul>
+                <li>Estrutura Metálica Unifilar</li>
+                <li>Estrutura Pré Moldada Unifilar</li>
+                <li>Estrutura de Concreto Moldado in loco executivo</li>
+                <li>Piso estrutural</li>
+                <li>Base para equipamentos</li>
+              </ul>
+            </div>
+
+            <div class="servico aparecer">
+              <h3 class="servico__titulo">Projeto Sanitário, Hidráulico e Utilidades</h3>
+              <ul>
+                <li>Rede sanitária com fossa séptica</li>
+                <li>Rede sanitária para estação de tratamento de efluentes</li>
+                <li>Rede de distribuição de água potável</li>
+                <li>Rede de distribuição de água potável pressurizada</li>
+                <li>Rede de água quente 45ºC</li>
+                <li>Rede de água quente 60ºC</li>
+                <li>Rede de água quente 90ºC</li>
+                <li>Rede de Vapor</li>
+                <li>Rede de Gás Alimentício</li>
+                <li>Rede de Gás GLP</li>
+                <li>Rede de Ar Comprimido</li>
+                <li>Rede de Drenagem Pluvial</li>
+              </ul>
+            </div>
+
+            <div class="servico aparecer">
+              <h3 class="servico__titulo">Projeto Elétrico</h3>
+              <ul>
+                <li>Projeto Elétrico Entrada de Energia</li>
+                <li>Projeto Elétrico da Subestação</li>
+                <li>Projeto Elétrico da Sala de Distribuição</li>
+                <li>Projeto de iluminação e tomadas comuns</li>
+                <li>Projeto de tomadas de rede estabilizada.</li>
+              </ul>
+            </div>
+
+            <div class="servico aparecer">
+              <h3 class="servico__titulo">Projeto Dados e Telefonia</h3>
+              <ul>
+                <li>Projeto do encaminhamento, identificações dos pontos e rota de cabos;</li>
+                <li>Projeto do Diagrama unifilar de telecomunicações.</li>
+              </ul>
+            </div>
+
+            <div class="servico aparecer">
+              <h3 class="servico__titulo">Projeto de SPDA</h3>
+              <ul><li>Descargas Atmosféricas para aterramento das construções civis e equipamentos.</li></ul>
+            </div>
+
+            <div class="servico aparecer">
+              <h3 class="servico__titulo">Projeto de Refrigeração, Climatização e Exaustão</h3>
+              <ul>
+                <li>Projeto unifilar do layout de refrigeração para indústria composto com a sala de máquinas</li>
+                <li>Projeto de Ar-condicionado</li>
+                <li>Projeto de Ventilação Forçada, exaustão e renovação de ar.</li>
+              </ul>
+            </div>
+
+            <div class="servico aparecer">
+              <h3 class="servico__titulo">Projeto de Terraplanagem e Pavimentação</h3>
+              <ul>
+                <li>Projeto de terraplanagem com corte transversais, longitudinais e planilha de cálculos</li>
+                <li>Projeto de pavimentação em concreto</li>
+                <li>Projeto de pavimentação em asfalto</li>
+                <li>Projeto de pavimentação com blocos intertravados.</li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <div data-incluir="cta"></div>
+      <div data-incluir="contato"></div>
+    </section>
+
+
+    <!-- =================================================================
+         PÁGINA: PLANEJAMENTO
+         As etapas são criadas pelo JavaScript (lista ETAPAS no final do arquivo).
+         ================================================================= -->
+    <section class="pagina" data-pagina="planejamento">
+
+      <header class="page-hero">
+        <video class="page-hero__video" autoplay muted loop playsinline preload="metadata"
+               src="assets/videoPlanejamento/fundoPlanejamento.mp4"></video>
+        <div class="container">
+          <nav class="migalhas" aria-label="Você está em"><a href="#/home">Home</a><span class="sep">/</span><a href="#/home/solucoes">Soluções</a><span class="sep">/</span><span>Planejamento</span></nav>
+          <h1 class="page-hero__titulo"><em>Planejamento</em></h1>
+          <p class="page-hero__texto">Possibilita a percepção da realidade e a avaliação de caminhos para reduzir a possibilidade de fracasso do empreendimento. Com o nosso conhecimento, orientamos os membros com relação às decisões estratégicas do negócio, do ponto de vista mercadológico, técnico, financeiro, jurídico e organizacional.</p>
+        </div>
+      </header>
+
+      <section class="secao">
+        <div class="container">
+          <div class="secao__topo aparecer">
+            <span class="secao__etiqueta">Etapas</span>
+            <h2 class="secao__titulo">Conheça nossas soluções em Planejamento</h2>
+          </div>
+          <div class="etapas" id="etapas"></div>
+        </div>
+      </section>
+
+      <div data-incluir="cta"></div>
+      <div data-incluir="contato"></div>
+    </section>
+
+
+    <!-- =================================================================
+         PÁGINA: ASSESSORIA
+         ================================================================= -->
+    <section class="pagina" data-pagina="assessoria">
+
+      <header class="page-hero" style="--fundo: url('assets/imagens/Assessoria.png')">
+        <div class="page-hero__fundo"></div>
+        <div class="container">
+          <nav class="migalhas" aria-label="Você está em"><a href="#/home">Home</a><span class="sep">/</span><a href="#/home/solucoes">Soluções</a><span class="sep">/</span><span>Assessoria</span></nav>
+          <h1 class="page-hero__titulo"><em>Assessoria</em></h1>
+          <p class="page-hero__texto">Permite a avaliação do projeto desde a geração dos produtos até a distribuição para os clientes. Melhoria contínua e percepção da possibilidade do aprimoramento de processos, reduzindo os recursos e mantendo a qualidade.</p>
+        </div>
+      </header>
+
+      <section class="secao">
+        <div class="container">
+          <div class="secao__topo aparecer">
+            <span class="secao__etiqueta">Frentes de atuação</span>
+            <h2 class="secao__titulo">Conheça nossas soluções em Assessoria</h2>
+          </div>
+
+          <article class="destaque aparecer">
+            <div class="destaque__midia"><img class="contido" src="assets/imagens/inspecionado.png" alt="Aprovações Legais" loading="lazy"></div>
+            <div>
+              <span class="destaque__numero">01</span>
+              <h3 class="destaque__titulo">Aprovações Legais</h3>
+              <p class="destaque__texto">A ExperConsult desenvolve o projeto conceitual junto ao cliente e o prepara para as aprovações junto aos órgãos de inspeção federal, estadual ou municipal. Acompanhamos o cliente desde a concepção até a aprovação junto ao órgão desejado.</p>
+            </div>
+          </article>
+
+          <article class="destaque destaque--inverso aparecer">
+            <div class="destaque__midia"><img src="assets/imagens/Ret%C3%A2ngulo%20107.jpg" alt="Controle de Qualidade" loading="lazy"></div>
+            <div>
+              <span class="destaque__numero">02</span>
+              <h3 class="destaque__titulo">Controle de Qualidade</h3>
+              <p class="destaque__texto">Desenvolvimento de programas de autocontrole (PAC’s) e boas práticas de fabricação (BPF’s).</p>
+            </div>
+          </article>
+
+          <article class="destaque aparecer">
+            <div class="destaque__midia"><img src="assets/imagens/Ret%C3%A2ngulo%20106.jpg" alt="Treinamento Especializado" loading="lazy"></div>
+            <div>
+              <span class="destaque__numero">03</span>
+              <h3 class="destaque__titulo">Treinamento Especializado</h3>
+              <p class="destaque__texto">Qualificação e capacitação técnica das equipes de produção através de processo sistemático, articulado e intencional, apoiado na aplicação prática das metodologias dos processos de trabalho da indústria, visando a multiplicação do conhecimento profissional.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <div data-incluir="cta"></div>
+      <div data-incluir="contato"></div>
+    </section>
+
+
+    <!-- =================================================================
+         PÁGINA: SOBRE NÓS
+         ================================================================= -->
+    <section class="pagina" data-pagina="sobre-nos">
+
+      <header class="page-hero" style="--fundo: url('assets/imagens/Sobre-nos.png')">
+        <div class="page-hero__fundo"></div>
+        <div class="container">
+          <nav class="migalhas" aria-label="Você está em"><a href="#/home">Home</a><span class="sep">/</span><span>Sobre nós</span></nav>
+          <h1 class="page-hero__titulo">A <em>ExperConsult</em></h1>
+          <p class="page-hero__texto">Fundada há mais de 20 anos, a ExperConsult Engenharia iniciou suas atividades com foco em assessoria de projetos de aprovações legais para órgãos federais, estaduais e municipais de todo Brasil. Surgindo assim, uma empresa que, desde sua origem, seria marcada pela competência e profissionalismo. A partir das elaborações de layouts industriais e aprovações legais, a empresa foi se desenvolvendo, criando setores de Arquitetura e Engenharia Especializada visando atender o cliente com todas as disciplinas necessárias para liberação do empreendimento.</p>
+        </div>
+      </header>
+
+      <div class="container">
+        <div class="numeros">
+          <div class="numero aparecer">
+            <div class="numero__valor"><span class="contar" data-alvo="20" data-prefixo="+">+20</span></div>
+            <div class="numero__rotulo">anos de história</div>
+          </div>
+          <div class="numero aparecer">
+            <div class="numero__valor"><span class="contar" data-alvo="25">25</span></div>
+            <div class="numero__rotulo">anos de experiência do consultor no setor de alimentos</div>
+          </div>
+          <div class="numero aparecer">
+            <div class="numero__valor">Brasil</div>
+            <div class="numero__rotulo">aprovações legais em órgãos federais, estaduais e municipais</div>
+          </div>
+        </div>
+      </div>
+
+      <section class="secao">
+        <div class="container">
+          <div class="secao__topo aparecer">
+            <span class="secao__etiqueta">Onde estamos</span>
+            <h2 class="secao__titulo">Nossa Estrutura</h2>
+          </div>
+          <p class="secao__intro aparecer">A sede da empresa está localizada na cidade de Igarapé-MG, tendo como fundador e em sua direção o engenheiro de alimentos João Batista de Oliveira Demenek, que trouxe amplas experiências anteriores na área, entre elas, como diretor de indústrias frigoríficas do Estado de Minas Gerais.</p>
+          <div class="galeria galeria--tres aparecer" id="galeriaEstrutura"></div>
+        </div>
+      </section>
+
+      <section class="secao secao--clara">
+        <div class="container">
+          <div class="secao__topo aparecer">
+            <span class="secao__etiqueta">Liderança</span>
+            <h2 class="secao__titulo">O Consultor</h2>
+          </div>
+
+          <article class="destaque aparecer">
+            <!-- class="natural" mostra a foto inteira, sem cortar a cabeça -->
+            <div class="destaque__midia"><img class="natural" src="assets/imagens/consultor.jpg" alt="João Demenek" loading="lazy"></div>
+            <div>
+              <span class="destaque__numero">Consultoria</span>
+              <h3 class="destaque__titulo">João Demenek</h3>
+              <p class="destaque__texto">João Demenek, com 25 anos de experiência em consultoria e focado nas tendências de mercado no setor de alimentos. João Demenek é reconhecido pelos clientes por sua competência, pioneirismo e inovação.</p>
+              <p class="destaque__texto"><strong>Experiência que faz a diferença:</strong></p>
+              <ul class="destaque__lista">
+                <li>Administrador de Empresa</li>
+                <li>Especialista em Marketing</li>
+                <li>Engenheiro de Alimentos</li>
+                <li>Especialista em Tecnologia de Carnes</li>
+              </ul>
+              <p class="destaque__texto">25 anos atuando no ramo da indústria alimentícia com destaque na atividade frigorífica e seu amplo conhecimento técnico em abate, desossa, cortes, processamento e industrialização de aves, peixes, suínos, bovinos e ovinos.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="secao">
+        <div class="container">
+          <div class="secao__topo aparecer">
+            <span class="secao__etiqueta">Time</span>
+            <h2 class="secao__titulo">Nossa Equipe</h2>
+          </div>
+          <p class="secao__intro aparecer">A ExperConsult conta com uma equipe composta de:</p>
+          <div class="equipe" id="equipe"></div>
+        </div>
+      </section>
+
+      <div data-incluir="contato"></div>
+    </section>
+
+
+    <!-- =================================================================
+         PÁGINA: CLIENTES
+         ================================================================= -->
+    <section class="pagina" data-pagina="clientes">
+
+      <header class="page-hero page-hero--curto" style="--fundo: url('assets/imagens/Home.png')">
+        <div class="page-hero__fundo"></div>
+        <div class="container">
+          <nav class="migalhas" aria-label="Você está em"><a href="#/home">Home</a><span class="sep">/</span><span>Clientes</span></nav>
+          <h1 class="page-hero__titulo">Nossos <em>Clientes</em></h1>
+        </div>
+      </header>
+
+      <section class="secao secao--clara">
+        <div class="container">
+          <div class="logos logos--centro aparecer" id="gradeClientes"></div>
+        </div>
+      </section>
+
+      <div data-incluir="cta"></div>
+      <div data-incluir="contato"></div>
+    </section>
+
+
+    <!-- =================================================================
+         PÁGINA: CASES  (criados pelo JavaScript — lista CASES no final do arquivo)
+         ================================================================= -->
+    <section class="pagina" data-pagina="cases">
+
+      <header class="page-hero page-hero--curto" style="--fundo: url('assets/imagens/Cases.png')">
+        <div class="page-hero__fundo"></div>
+        <div class="container">
+          <nav class="migalhas" aria-label="Você está em"><a href="#/home">Home</a><span class="sep">/</span><span>Cases</span></nav>
+          <h1 class="page-hero__titulo">Conheça nossos <em>Cases</em></h1>
+        </div>
+      </header>
+
+      <nav class="chips" id="chipsCases" aria-label="Segmentos"></nav>
+      <div id="listaCases"></div>
+
+      <div data-incluir="cta"></div>
+      <div data-incluir="contato"></div>
+    </section>
+
+
+    <!-- =================================================================
+         PÁGINA: CONTATO
+         ================================================================= -->
+    <section class="pagina" data-pagina="contato">
+
+      <header class="page-hero page-hero--curto" style="--fundo: url('assets/imagens/Home.png')">
+        <div class="page-hero__fundo"></div>
+        <div class="container">
+          <nav class="migalhas" aria-label="Você está em"><a href="#/home">Home</a><span class="sep">/</span><span>Contato</span></nav>
+          <h1 class="page-hero__titulo">Entre em <em>contato</em></h1>
+        </div>
+      </header>
+
+      <div data-incluir="contato" data-sem-titulo></div>
+    </section>
+
+  </main>
+
+  <!-- =====================================================================
+       RODAPÉ
+       ===================================================================== -->
+  <footer class="rodape">
+    <div class="container">
+      <div class="rodape__topo">
+        <a href="#/home" class="rodape__logo" aria-label="Voltar ao início">
+          <img src="assets/imagens/Logo%20Exper%20Consult%20(Branco).png" alt="Exper Consult" loading="lazy">
+        </a>
+        <nav class="rodape__nav" aria-label="Menu do rodapé">
+          <a href="#/home">Home</a>
+          <a href="#/engenharia">Engenharia</a>
+          <a href="#/planejamento">Planejamento</a>
+          <a href="#/assessoria">Assessoria</a>
+          <a href="#/sobre-nos">Sobre nós</a>
+          <a href="#/clientes">Clientes</a>
+          <a href="#/cases">Cases</a>
+          <a href="#/contato">Contato</a>
+        </nav>
+      </div>
+      <p class="rodape__copy">© <span id="ano">2024</span> Exper Consult | Engenharia, Planejamento e Consultoria. Todos os direitos reservados</p>
+    </div>
+  </footer>
+
+  <!-- Foto ampliada -->
+  <div class="lightbox" id="lightbox" hidden role="dialog" aria-modal="true" aria-label="Foto ampliada">
+    <button class="lightbox__fechar" id="lbFechar" aria-label="Fechar">✕</button>
+    <button class="lightbox__nav lightbox__nav--ant" id="lbAnt" aria-label="Foto anterior">‹</button>
+    <img class="lightbox__img" id="lbImg" alt="">
+    <button class="lightbox__nav lightbox__nav--prox" id="lbProx" aria-label="Próxima foto">›</button>
+  </div>
+
+
+  <!-- =====================================================================
+       BLOCOS COMPARTILHADOS (aparecem em várias páginas)
+       Edite aqui e a mudança vale em todas as páginas que usam o bloco.
+       ===================================================================== -->
+
+  <!-- Faixa de chamada -->
+  <template id="tpl-cta">
+    <section class="cta">
+      <div class="container cta__inner">
+        <h2 class="cta__titulo">Vamos conversar sobre o <em>seu projeto?</em></h2>
+        <a href="#/contato" class="btn btn--primario">Fale conosco →</a>
+      </div>
+    </section>
+  </template>
+
+  <!-- Contato + mapa -->
+  <template id="tpl-contato">
+    <section class="secao contato">
+      <div class="container">
+
+        <div class="secao__topo aparecer">
+          <span class="secao__etiqueta">Fale com a gente</span>
+          <h2 class="secao__titulo">Entre em contato</h2>
+        </div>
+
+        <div class="contato__grade">
+
+          <div class="contato__lista aparecer">
+
+            <a href="tel:+553135344699" class="contato__item">
+              <span class="contato__icone">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25c1.1.37 2.3.57 3.6.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg>
+              </span>
+              <span><span class="contato__rotulo">Telefone</span><span class="contato__valor">(31) 3534-4699</span></span>
+            </a>
+
+            <a href="mailto:exper@experconsult.com.br" class="contato__item">
+              <span class="contato__icone">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5z"/></svg>
+              </span>
+              <span><span class="contato__rotulo">E-mail</span><span class="contato__valor">exper@experconsult.com.br</span></span>
+            </a>
+
+            <a href="https://www.instagram.com/experconsult/" class="contato__item" target="_blank" rel="noopener">
+              <span class="contato__icone">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3zm5 3.5A4.5 4.5 0 1 1 7.5 12 4.5 4.5 0 0 1 12 7.5zm0 2A2.5 2.5 0 1 0 14.5 12 2.5 2.5 0 0 0 12 9.5zM17.3 6a1.1 1.1 0 1 1-1.1 1.1A1.1 1.1 0 0 1 17.3 6z"/></svg>
+              </span>
+              <span><span class="contato__rotulo">Instagram</span><span class="contato__valor">experconsult</span></span>
+            </a>
+
+            <a href="https://www.linkedin.com/company/exper-consult-ltda/?originalSubdomain=br" class="contato__item" target="_blank" rel="noopener">
+              <span class="contato__icone">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.75h4V21H3zM9.75 9.75h3.8v1.55h.06c.53-1 1.82-2.05 3.75-2.05 4 0 4.74 2.63 4.74 6.05V21h-4v-5.1c0-1.22-.02-2.78-1.7-2.78-1.7 0-1.96 1.33-1.96 2.7V21h-4z"/></svg>
+              </span>
+              <span><span class="contato__rotulo">LinkedIn</span><span class="contato__valor">exper-consult</span></span>
+            </a>
+
+          </div>
+
+          <div class="aparecer">
+            <h3 class="contato__subtitulo">Como Chegar</h3>
+            <div class="mapa">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7494.975692875168!2d-44.3083464!3d-20.0718838!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xa6d1107c2a0baf%3A0x8eac756a1ea35db!2sExper%20Consult%20-%20Engenharia%20Especializada!5e0!3m2!1spt-BR!2sbr!4v1675550897160!5m2!1spt-BR!2sbr"
+                title="Localização da Exper Consult" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </template>
+
+
+  <script>
+    /* =====================================================================
+       JAVASCRIPT
+       1. Configurações e dados (imagens, clientes, etapas, equipe, cases)
+       2. Ícones
+       3. Blocos compartilhados (contato, CTA)
+       4. Logos dos clientes (carrossel, grade)
+       5. Montagem de Planejamento, Equipe, Estrutura e Cases
+       6. Menu
+       7. Roteador (troca de página)
+       8. Foto ampliada (lightbox)
+       9. Animações: aparecer ao rolar e números que contam
+       ===================================================================== */
+
+    document.documentElement.classList.add('js');
+
+
+    /* ---------------------------------------------------------------------
+       1. CONFIGURAÇÕES E DADOS
+       Todas as imagens ficam na pasta assets/ (ao lado do index.html).
+       --------------------------------------------------------------------- */
+    const BASE = 'assets/';
+    const PASTA_CLIENTES = BASE + 'imagensClientes/';
+
+    /* Monta a URL de uma imagem (trata espaços e acentos) */
+    const urlImagem = (caminho) => BASE + encodeURI(caminho);
+
+    /* Lista geral de logos (carrossel da home e página Clientes) */
+    const CLIENTES = [
+      'adorar.png','agraria.png','Agrolusa.png','alfa.png','alimenti.png','AllesAlimentos.png','angeloni.png','aryzta.png',
+      'atalaia.png','ave-nova.png','avenorte.png','bahamas.png','barramansa.png','begreen.png','bergamini.png','bestbeef.png',
+      'bigbeef.png','bistek.png','boibras.png','bomdia.png','bonasa.png','borussia.png','brasa.png','Brazilian_Flag_-_round.png',
+      'brios.png','bullight.png','callegaro.png','carapreta.png','castilhos.png','cedrofrigor.png','cencosud.png','ciacarne.png',
+      'cialne.png','coamig.png','cofril.png','cogran.png','congebras.png','cooperalianca.png','cooperfrigu.png','csb.png',
+      'dia-dia.png','dia.png','distriboi.png','dudico.png','ecofrigo.png','esper.png','extrabom.png','festval.png',
+      'forteboi.png','fortefrigo.png','fratte.png','friato.png','frico.png','fricon.png','friganso.png','frigobet.png',
+      'frigomatoso.png','frigominas.png','frigorifico-real.png','frigosuino.png','frigotins.png','frigovitta.png','frijob.png','friuna.png',
+      'frizelo.png','gessner.png','giassi.png','goncalves.png','gpa.png','grancampero.png','handtmann.png','hortisul.png',
+      'imperio.png','kiboi.png','korin.png','landim.png','lopes.png','lpx.png','mafrinorte.png','maguary.png',
+      'maisa.png','marfrig.png','mateus.png','mellore.png','moreira.png','muffato.png','nordestao.png','notable.png',
+      'nutribelo.png','nutrien.png','padrao-beef.png','paguemenos.png','pao-arte.png','parman.png','perim.png','pravitta.png',
+      'primecater.png','q.png','raja.png','resplendor.png','rey.png','reyna.png','riomaria.png','rivelli.png',
+      'saborvida.png','santa-clara.png','sao-joao-del-rey.png','saudali.png','sonda.png','ssa.png','starmilk.png','super-maia.png',
+      'super-maxi.png','supernosso.png','tijuca.png','trigo-arte-e-cia.png','trimais.png','uai.png','unidasul.png','verdemar.png',
+      'verona.png','vila-caipira.png','vpj.png','yoguedes.png','zaffari.png','zona sul.png'
+    ];
+
+    const NUMERO_DE_LINHAS = 3;   // linhas do carrossel da home
+
+    /* Fotos da seção "Nossa Estrutura" (pasta assets/imagens/) */
+    const FOTOS_ESTRUTURA = ['a.jpg','b.jpg','c.jpg','d.jpg','f.jpg','g.jpg','h.jpg','i.jpg','j.jpg'];
+
+    /* Etapas de Planejamento. O primeiro item vira o card grande de destaque.
+       "icone" = nome de um ícone da lista ICONES. */
+    const ETAPAS = [
+      { nome: 'Plano de Negócios',              icone: 'maleta'   },
+      { nome: 'Descrição do Empreendimento',    icone: 'fabrica'  },
+      { nome: 'Competência Gerencial',          icone: 'pessoas'  },
+      { nome: 'Produtos e Serviços',            icone: 'caixa'    },
+      { nome: 'Análise Competitiva do Mercado', icone: 'grafico'  },
+      { nome: 'Plano de Marketing e Vendas',    icone: 'megafone' },
+      { nome: 'Plano Financeiro',               icone: 'moeda'    }
+    ];
+
+    /* Equipe (sem quantidades). Para adicionar ou remover uma função, edite esta lista. */
+    const EQUIPE = [
+      'Analistas de custos', 'Arquitetos', 'Designers gráficos', 'Engenheiros civis',
+      'Engenheiros civis especialistas em pavimentação', 'Engenheiros ambientais',
+      'Engenheiros civis especialistas em BIM', 'Engenheiros civis especialistas em estruturas',
+      'Engenheiros civis especialistas em refrigeração industrial',
+      'Engenheiros civis especialistas em terraplanagem e exaustão',
+      'Engenheiros civis especialistas em tubulações', 'Engenheiros civis especialistas em PPCI',
+      'Engenheiros de alimentos', 'Engenheiros eletricistas', 'Médicos veterinários',
+      'Projetistas', 'Estagiários'
+    ];
+
+    /* CASES: para criar um novo, copie um bloco { ... } e ajuste.
+       • pasta:    pasta das fotos dentro de assets/
+       • fotos:    nomes dos arquivos
+       • clientes: arquivos em imagensClientes/ (ou caminho a partir de assets/) */
+    const CASES = [
+      {
+        id: 'bovinos', titulo: 'Frigorífico de Bovinos',
+        destaque: 'Mercado interno e exportação:',
+        texto: 'Em conformidade com as normas nacionais, projetamos indústrias modernas e com tecnologias que se adaptam às necessidades de cada cliente. Com foco no mercado externo, desenvolvemos também linhas de abate para exportação, como: Abate Kosher, Salga Kosher e Abate Halal.',
+        pasta: 'Bovinos',
+        fotos: ['Projeto Asogan_2 - Photojpg-1400.jpg','Abate 18jpg-1400.jpg','Abate 19jpg-1400.jpg','Abate 20jpg-1400.jpg','Projeto Asogan_10 - Photojpg-1400.jpg','Projeto Asogan_3 - Photojpg-1400.jpg','Projeto Asogan_5 - Photojpg-1400.jpg'],
+        clientes: ['equador-asogan.png','barramansa.png','boibras.png','callegaro.png','carapreta.png','cofril.png','cooperalianca.png','ecofrigo.png','forteboi.png','fortefrigo.png','frigobet.png','frigomatoso.png','frigominas.png','frigovitta.png','frijob.png','friuna.png','frizelo.png','mafrinorte.png','riomaria.png']
+      },
+      {
+        id: 'suinos', titulo: 'Frigorífico de Suínos',
+        destaque: 'Bem-estar animal e Inovação:',
+        texto: 'Sempre buscando novas tecnologias para o bem-estar animal, trouxemos para Minas Gerais uma linha de abate de suínos com insensibilização por Dióxido de Carbono. Este método de insensibilização consiste na exposição direta dos suínos a um ambiente com alta concentração de CO², que ao ser inalado pelo animal causa uma perda gradual da consciência. A insensibilização por CO² foi desenvolvida para uma linha com velocidade de 260 suínos por hora.',
+        pasta: 'Suinos',
+        fotos: ['2jpg-1400.jpg','1jpg-1400.jpg','3jpg-1400.jpg','4jpg-1400.jpg','5jpg-1400.jpg','6jpg-1400.jpg'],
+        clientes: ['Agrolusa.png','ciacarne.png','cofril.png','paraguai-concepcion.png','ecofrigo.png','fortefrigo.png','frigomatoso.png','frigosuino.png','frigotins.png','frijob.png','friuna.png','frigovitta.png','paraguai-incka.png','maisa.png','argentina-rafaela.png','raja.png','santa-clara.png','saudali.png']
+      },
+      {
+        id: 'aves', titulo: 'Frigorífico de Aves',
+        destaque: 'Automação:',
+        texto: 'Desde o abate tradicional a linhas automáticas, a ExperConsult projeta as linhas de acordo com a capacidade e velocidade desejada pelo cliente e emprega diversas tecnologias para automação da indústria.',
+        pasta: 'Aves',
+        fotos: ['ABATE DE AVES_1 - Photojpg-1400.jpg','ABATE DE AVES_2 - Photojpg-1400.jpg','ABATE DE AVES_3 - Photojpg-1400.jpg','ABATE DE AVES_4 - Photojpg-1400.jpg','ABATE DE AVES_5 - Photojpg-1400.jpg','ABATE DE AVES_6 - Photojpg-1400.jpg','ABATE DE AVES_7 - Photojpg-1400.jpg','ABATE DE AVES_8 - Photojpg-1400.jpg','ABATE DE AVES_9 - Photojpg-1400.jpg','ABATE DE AVES_10 - Photojpg-1400.jpg'],
+        clientes: ['atalaia.png','cialne.png','cogran.png','korin.png','rivelli.png','bolivia-sofia.png','tijuca.png']
+      },
+      {
+        id: 'desossa', titulo: 'Desossa',
+        destaque: 'Padronização e rendimento.',
+        texto: 'Projetadas com linhas automatizadas e contínuas, as salas de desossa possuem foco na padronização e rendimento dos cortes. Para as embalagens, indicamos em projeto equipamentos de alta tecnologia para a formação e embalagem automática dos produtos à vácuo.',
+        pasta: 'Desossa',
+        fotos: ['7jpg-1400.jpg','8jpg-1400.jpg','9jpg-1400.jpg','BAHAMAS_1 - Photojpg-1400.jpg','BAHAMAS_3 - Photojpg-1400.jpg','BAHAMAS_4 - Photojpg-1400.jpg','Desossa 24jpg-1400.jpg','Desossa 25jpg-1400.jpg','Desossa 26jpg-1400.jpg'],
+        clientes: ['imagens/alimentar foods.png','brios.png','grancampero.png','kiboi.png','mellore.png','muffato.png','imagens/481.png','super-maxi.png']
+      },
+      {
+        id: 'fatiamento', titulo: 'Central de Fatiamento e Porcionamento',
+        destaque: 'Pioneirismo e qualidade.',
+        texto: 'A ExperConsult desenvolve projetos para supermercadistas que buscam lançar a sua marca em produtos alimentícios, desenvolvendo linhas semiautomáticas ou automáticas para fatiamento e porcionamento de produtos. Utilizando embalagens altamente tecnológicas e sofisticadas, como as bandejas termoformadas em atmosfera modificada (ATM) que aumentam o shelf life dos produtos, a segurança alimentar e a preservação de características do produto.',
+        pasta: 'fatiamento',
+        fotos: ['16jpg-1400.jpg','17jpg-1400.jpg','Bahamas_1 - Photojpg-1400.jpg'],
+        clientes: ['angeloni.png','bistek.png','bomdia.png','cencosud.png','paraguai-ddc.png','dia.png','extrabom.png','goncalves.png','mateus.png','muffato.png','nordestao.png','pao-de-acucar.png','argentina-rafaela.png','supernosso.png','trimais.png','verdemar.png','zaffari.png','zona sul.png']
+      },
+      {
+        id: 'industrializados', titulo: 'Industrializados',
+        destaque: 'Transformação e valor.',
+        texto: 'Buscando o aproveitamento máximo do abate dos animais, os industrializados são uma ótima oportunidade para expansão da marca comercial. Neste aspecto, nós desenvolvemos uma indústria de acordo com o prospectado pelo cliente buscando a integração de equipamentos para a elaboração de produtos como: presuntos, apresuntados, fiambre, bacon, mortadelas, salsichas, dentre outros. Todos estes produtos possuem em comum, um alto valor agregado para venda.',
+        pasta: 'industrializados',
+        fotos: ['10jpg-1400.jpg','11jpg-1400.jpg','12jpg-1400.jpg','13jpg-1400.jpg','14jpg-1400.jpg','15jpg-1400.jpg','Bahamas_3 - Photojpg-1400.jpg','TIJUCA - INDUSTRIALIZADOS_12 - Fotojpg-1400.jpg','TIJUCA - INDUSTRIALIZADOS_13 - Fotojpg-1400.jpg','TIJUCA - INDUSTRIALIZADOS_14 - Fotojpg-1400.jpg','TIJUCA - INDUSTRIALIZADOS_15 - Fotojpg-1400.jpg'],
+        clientes: ['adorar.png','AllesAlimentos.png','cogran.png','paraguai-concepcion.png','cooperfrigu.png','frico.png','grancampero.png','paraguai-incka.png','kiboi.png','korin.png','mellore.png','argentina-rafaela.png','reyna.png','tijuca.png']
+      },
+      {
+        id: 'panificacao', titulo: 'Panificação',
+        destaque: 'Tradição e modernidade.',
+        texto: 'Projetamos linhas de alta capacidade de produção, como linhas de pão francês congelados, tortas congeladas, pizzas congeladas e etc. Com a crescente demanda dos consumidores por praticidade e comodidade, projetamos rotisserias para a elaboração de pratos semiprontos ou prontos, como molhos, pastas, pizzas, sanduíches, caldos e etc.',
+        pasta: 'Panificação',
+        fotos: ['GIASSI PANIFICAÇÃO_1 - Photojpg-1400.jpg','GIASSI PANIFICAÇÃO_2 - Fotojpg-1400.jpg','GIASSI PANIFICAÇÃO_3 - Fotojpg-1400.jpg','GIASSI PANIFICAÇÃO_4 - Fotojpg-1400.jpg','GIASSI PANIFICAÇÃO_5 - Fotojpg-1400.jpg','GIASSI PANIFICAÇÃO_7 - Fotojpg-1400.jpg','GIASSI PANIFICAÇÃO_8 - Fotojpg-1400.jpg'],
+        clientes: ['bahamas.png','mateus.png','pao-de-acucar.png','perim.png','supernosso.png','trigo-arte-e-cia.png','unidasul.png']
+      }
+    ];
+
+    /* Nomes das páginas (aba do navegador) */
+    const TITULOS = {
+      'home':         'Exper Consult | Engenharia, Planejamento e Consultoria',
+      'engenharia':   'Engenharia | Exper Consult',
+      'planejamento': 'Planejamento | Exper Consult',
+      'assessoria':   'Assessoria | Exper Consult',
+      'sobre-nos':    'Sobre nós | Exper Consult',
+      'clientes':     'Clientes | Exper Consult',
+      'cases':        'Cases | Exper Consult',
+      'contato':      'Contato | Exper Consult'
+    };
+    const GRUPO_SOLUCOES = ['engenharia', 'planejamento', 'assessoria'];
+
+
+    /* ---------------------------------------------------------------------
+       2. ÍCONES
+       Para usar em qualquer lugar do HTML:  <span class="icone" data-icone="alvo"></span>
+       --------------------------------------------------------------------- */
+    const ICONES = {
+      regua:    '<path d="M21.3 15.3a2.4 2.4 0 0 1 0 3.4l-2.6 2.6a2.4 2.4 0 0 1-3.4 0L2.7 8.7a2.4 2.4 0 0 1 0-3.4l2.6-2.6a2.4 2.4 0 0 1 3.4 0Z"/><path d="m14.5 12.5 2-2"/><path d="m11.5 9.5 2-2"/><path d="m8.5 6.5 2-2"/><path d="m17.5 15.5 2-2"/>',
+      alvo:     '<circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>',
+      escudo:   '<path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/>',
+      maleta:   '<rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>',
+      fabrica:  '<path d="M2 20a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8l-7 5V8l-7 5V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M17 18h1"/><path d="M12 18h1"/><path d="M7 18h1"/>',
+      pessoas:  '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
+      caixa:    '<path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/>',
+      grafico:  '<line x1="12" x2="12" y1="20" y2="10"/><line x1="18" x2="18" y1="20" y2="4"/><line x1="6" x2="6" y1="20" y2="16"/>',
+      megafone: '<path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/>',
+      moeda:    '<circle cx="12" cy="12" r="10"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><path d="M12 18V6"/>',
+      predio:   '<rect x="4" y="2" width="16" height="20" rx="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01"/><path d="M16 6h.01"/><path d="M12 6h.01"/><path d="M12 10h.01"/><path d="M12 14h.01"/><path d="M16 10h.01"/><path d="M16 14h.01"/><path d="M8 10h.01"/><path d="M8 14h.01"/>',
+      raio:     '<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>'
+    };
+
+    const svg = (nome) =>
+      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+      (ICONES[nome] || '') + '</svg>';
+
+
+    /* ---------------------------------------------------------------------
+       3. BLOCOS COMPARTILHADOS
+       Todo <div data-incluir="contato"> recebe o conteúdo do <template id="tpl-contato">.
+       --------------------------------------------------------------------- */
+    document.querySelectorAll('[data-incluir]').forEach((destino) => {
+      const modelo = document.getElementById('tpl-' + destino.dataset.incluir);
+      if (!modelo) return;
+      destino.appendChild(modelo.content.cloneNode(true));
+
+      /* data-sem-titulo: esconde o título "Entre em contato" (a página já tem um) */
+      if (destino.hasAttribute('data-sem-titulo')) {
+        const topo = destino.querySelector('.secao__topo');
+        if (topo) topo.remove();
+      }
+    });
+
+
+    /* ---------------------------------------------------------------------
+       4. LOGOS DOS CLIENTES
+       --------------------------------------------------------------------- */
+    function urlCliente(item) {
+      /* Itens com "/" já trazem a pasta (ex.: imagens/481.png) */
+      return item.includes('/') ? BASE + encodeURI(item) : PASTA_CLIENTES + encodeURIComponent(item);
+    }
+
+    function criarLogo(item) {
+      const caixa = document.createElement('div');
+      caixa.className = 'logo-cliente';
+
+      const img = document.createElement('img');
+      img.src = urlCliente(item);
+      img.alt = item.split('/').pop().replace('.png', '').replace(/[-_]/g, ' ');
+      img.loading = 'lazy';
+      img.addEventListener('error', () => caixa.remove());   // se falhar, some sem deixar buraco
+
+      caixa.appendChild(img);
+      return caixa;
+    }
+
+    /* Carrossel infinito da home: divide em linhas e duplica para o loop ser contínuo */
+    function montarCarrossel() {
+      const marquee = document.getElementById('marquee');
+      const porLinha = Math.ceil(CLIENTES.length / NUMERO_DE_LINHAS);
+
+      for (let i = 0; i < NUMERO_DE_LINHAS; i++) {
+        const grupo  = CLIENTES.slice(i * porLinha, (i + 1) * porLinha);
+        const linha  = document.createElement('div');
+        linha.className = 'marquee__linha';
+        const trilho = document.createElement('div');
+        trilho.className = 'marquee__trilho';
+        [...grupo, ...grupo].forEach((item) => trilho.appendChild(criarLogo(item)));
+        linha.appendChild(trilho);
+        marquee.appendChild(linha);
+      }
+    }
+
+    /* Grade completa da página Clientes */
+    function montarGradeClientes() {
+      const grade = document.getElementById('gradeClientes');
+      CLIENTES.forEach((item) => grade.appendChild(criarLogo(item)));
+    }
+
+
+    /* ---------------------------------------------------------------------
+       5. PLANEJAMENTO, EQUIPE, ESTRUTURA E CASES
+       --------------------------------------------------------------------- */
+    function montarEtapas() {
+      document.getElementById('etapas').innerHTML = ETAPAS.map((e, i) => `
+        <article class="etapa ${i === 0 ? 'etapa--destaque' : ''} aparecer">
+          <span class="etapa__numero">${String(i + 1).padStart(2, '0')}</span>
+          <span class="etapa__icone">${svg(e.icone)}</span>
+          <h3 class="etapa__titulo">${e.nome}</h3>
+        </article>`).join('');
+    }
+
+    function montarEquipe() {
+      document.getElementById('equipe').innerHTML = EQUIPE.map((nome) => `
+        <div class="equipe__item aparecer">
+          <span class="equipe__marca">✓</span>
+          <span class="equipe__nome">${nome}</span>
+        </div>`).join('');
+    }
+
+    function criarFoto(caminho, alt, grupo) {
+      return `<div class="galeria__item"><img src="${urlImagem(caminho)}" alt="${alt}" loading="lazy" data-galeria="${grupo}"></div>`;
+    }
+
+    function montarEstrutura() {
+      document.getElementById('galeriaEstrutura').innerHTML =
+        FOTOS_ESTRUTURA.map((f) => criarFoto('imagens/' + f, 'Estrutura da ExperConsult', 'estrutura')).join('');
+    }
+
+    function montarCases() {
+      const lista = document.getElementById('listaCases');
+      const chips = document.getElementById('chipsCases');
+
+      CASES.forEach((c, i) => {
+        const numero = String(i + 1).padStart(2, '0');
+
+        chips.insertAdjacentHTML('beforeend',
+          `<a class="chip" href="#/cases/${c.id}" data-case="${c.id}"><span class="chip__num">${numero}</span>${c.titulo}</a>`);
+
+        const fotos = c.fotos.map((f) => criarFoto(c.pasta + '/' + f, c.titulo, 'case-' + c.id)).join('');
+        const classeGaleria = c.fotos.length >= 6 ? 'galeria--destaque' : (c.fotos.length <= 3 ? 'galeria--tres' : '');
+
+        lista.insertAdjacentHTML('beforeend', `
+          <section class="case" id="cases-${c.id}">
+            <div class="container">
+              <div class="case__cabecalho aparecer">
+                <span class="case__numero">${numero}</span>
+                <div>
+                  <h2 class="case__titulo">${c.titulo}</h2>
+                  <p class="case__texto"><strong>${c.destaque}</strong> ${c.texto}</p>
+                </div>
+              </div>
+              <div class="galeria ${classeGaleria} aparecer">${fotos}</div>
+              <h3 class="case__clientes-titulo">Alguns de nossos clientes neste segmento</h3>
+              <div class="logos" data-logos="${c.id}"></div>
+            </div>
+          </section>`);
+
+        const caixa = lista.querySelector(`[data-logos="${c.id}"]`);
+        c.clientes.forEach((item) => caixa.appendChild(criarLogo(item)));
+      });
+    }
+
+    /* Destaca na barra de segmentos o case que está aparecendo na tela */
+    function ativarDestaqueDosChips() {
+      const barra = document.getElementById('chipsCases');
+      const chips = [...barra.querySelectorAll('.chip')];
+
+      const observadorCases = new IntersectionObserver((entradas) => {
+        entradas.forEach((entrada) => {
+          if (!entrada.isIntersecting) return;
+          const id = entrada.target.id.replace('cases-', '');
+          chips.forEach((c) => c.classList.toggle('ativo', c.dataset.case === id));
+
+          const ativo = chips.find((c) => c.dataset.case === id);
+          if (ativo) barra.scrollTo({ left: ativo.offsetLeft - (barra.clientWidth - ativo.clientWidth) / 2, behavior: 'smooth' });
+        });
+      }, { rootMargin: '-35% 0px -60% 0px' });
+
+      document.querySelectorAll('.case').forEach((secao) => observadorCases.observe(secao));
+    }
+
+    montarCarrossel();
+    montarGradeClientes();
+    montarEtapas();
+    montarEquipe();
+    montarEstrutura();
+    montarCases();
+    ativarDestaqueDosChips();
+
+    /* Preenche todos os <span data-icone="nome"> do HTML */
+    document.querySelectorAll('[data-icone]').forEach((el) => { el.innerHTML = svg(el.dataset.icone); });
+
+
+    /* ---------------------------------------------------------------------
+       6. MENU
+       --------------------------------------------------------------------- */
+    const header       = document.getElementById('header');
+    const menu         = document.getElementById('menu');
+    const menuFundo    = document.getElementById('menuFundo');
+    const hamburguer   = document.getElementById('hamburguer');
+    const itemSolucoes = document.getElementById('itemSolucoes');
+    const linkSolucoes = document.getElementById('linkSolucoes');
+    const ehCelular    = () => window.innerWidth <= 900;
+    let paginaAtual = 'home';
+
+    /* Header: transparente só no topo da Home. Nas demais páginas fica sempre sólido. */
+    function atualizarHeader() {
+      const solido = paginaAtual !== 'home' || window.scrollY > 40;
+      header.classList.toggle('header--solido', solido);
+    }
+    window.addEventListener('scroll', atualizarHeader, { passive: true });
+
+    /* Abre/fecha o menu do celular (também escurece o fundo e trava a rolagem da página) */
+    function alternarMenu(forcar) {
+      const abrir = typeof forcar === 'boolean' ? forcar : !menu.classList.contains('aberto');
+      menu.classList.toggle('aberto', abrir);
+      menuFundo.classList.toggle('ativo', abrir);
+      hamburguer.classList.toggle('ativo', abrir);
+      hamburguer.setAttribute('aria-expanded', abrir);
+      hamburguer.setAttribute('aria-label', abrir ? 'Fechar menu' : 'Abrir menu');
+      document.body.style.overflow = abrir ? 'hidden' : '';
+    }
+    hamburguer.addEventListener('click', () => alternarMenu());
+    menuFundo.addEventListener('click', () => alternarMenu(false));                 // toque fora fecha
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') alternarMenu(false); });
+    window.addEventListener('resize', () => { if (!ehCelular()) { alternarMenu(false); itemSolucoes.classList.remove('aberto'); } });
+
+    /* No celular, "Soluções" abre o submenu em vez de navegar */
+    linkSolucoes.addEventListener('click', (e) => {
+      if (ehCelular()) {
+        e.preventDefault();
+        itemSolucoes.classList.toggle('aberto');
+      }
+    });
+
+    /* Qualquer outro link do menu fecha o menu (mesmo se você já estiver naquela página) */
+    menu.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        if (link === linkSolucoes && ehCelular()) return;
+        alternarMenu(false);
+      });
+    });
+
+    /* Marca no menu a página em que você está */
+    function marcarMenuAtivo(pagina) {
+      document.querySelectorAll('[data-rota]').forEach((el) => el.classList.toggle('ativo', el.dataset.rota === pagina));
+      linkSolucoes.classList.toggle('ativo', GRUPO_SOLUCOES.includes(pagina));
+    }
+
+
+    /* ---------------------------------------------------------------------
+       7. ROTEADOR (troca de página sem recarregar)
+       Endereços:  #/engenharia   #/cases   #/cases/aves   #/home/solucoes
+       --------------------------------------------------------------------- */
+    function lerRota() {
+      const partes = location.hash.replace(/^#\/?/, '').split('/');
+      const pagina = TITULOS[partes[0]] ? partes[0] : 'home';
+      return { pagina, secao: partes[1] || '' };
+    }
+
+    function irParaRota() {
+      const { pagina, secao } = lerRota();
+      paginaAtual = pagina;
+
+      document.querySelectorAll('.pagina').forEach((p) => p.classList.toggle('ativa', p.dataset.pagina === pagina));
+      document.title = TITULOS[pagina];
+      marcarMenuAtivo(pagina);
+      alternarMenu(false);
+      itemSolucoes.classList.remove('aberto');
+      atualizarHeader();
+
+      if (secao) {
+        /* rola até a seção pedida (id = "pagina-secao") */
+        const alvo = document.getElementById(pagina + '-' + secao);
+        setTimeout(() => { if (alvo) alvo.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 80);
+      } else {
+        window.scrollTo({ top: 0, behavior: 'instant' });
+      }
+    }
+    window.addEventListener('hashchange', irParaRota);
+    irParaRota();
+
+
+    /* ---------------------------------------------------------------------
+       8. FOTO AMPLIADA (lightbox)
+       Qualquer <img data-galeria="nome"> abre ampliada; as fotos do mesmo "nome" viram uma sequência.
+       --------------------------------------------------------------------- */
+    const lightbox = document.getElementById('lightbox');
+    const lbImg    = document.getElementById('lbImg');
+    let fotosAtuais = [];
+    let indiceAtual = 0;
+
+    function mostrarFoto() {
+      const foto = fotosAtuais[indiceAtual];
+      lbImg.src = foto.src;
+      lbImg.alt = foto.alt;
+    }
+    function abrirLightbox(img) {
+      fotosAtuais = [...document.querySelectorAll(`img[data-galeria="${img.dataset.galeria}"]`)];
+      indiceAtual = fotosAtuais.indexOf(img);
+      mostrarFoto();
+      lightbox.hidden = false;
+      document.body.style.overflow = 'hidden';
+    }
+    function fecharLightbox() {
+      lightbox.hidden = true;
+      lbImg.src = '';
+      document.body.style.overflow = '';
+    }
+    function trocarFoto(passo) {
+      indiceAtual = (indiceAtual + passo + fotosAtuais.length) % fotosAtuais.length;
+      mostrarFoto();
+    }
+
+    document.addEventListener('click', (e) => {
+      const img = e.target.closest('img[data-galeria]');
+      if (img) abrirLightbox(img);
+    });
+    document.getElementById('lbFechar').addEventListener('click', fecharLightbox);
+    document.getElementById('lbAnt').addEventListener('click', () => trocarFoto(-1));
+    document.getElementById('lbProx').addEventListener('click', () => trocarFoto(1));
+    lightbox.addEventListener('click', (e) => { if (e.target === lightbox) fecharLightbox(); });
+    document.addEventListener('keydown', (e) => {
+      if (lightbox.hidden) return;
+      if (e.key === 'Escape') fecharLightbox();
+      if (e.key === 'ArrowLeft') trocarFoto(-1);
+      if (e.key === 'ArrowRight') trocarFoto(1);
+    });
+
+
+    /* ---------------------------------------------------------------------
+       9. ANIMAÇÕES
+       a) "aparecer": qualquer elemento com essa classe surge suavemente ao entrar na tela.
+       b) "contar": números que contam de 0 até o valor quando aparecem na tela.
+          <span class="contar" data-alvo="20" data-prefixo="+">+20</span>
+          (data-fonte="clientes" ou "cases" calcula o número a partir das listas do site)
+       --------------------------------------------------------------------- */
+    const semAnimacao = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    /* a) aparecer ao rolar */
+    const observador = new IntersectionObserver((entradas) => {
+      entradas.forEach((entrada) => {
+        if (entrada.isIntersecting) {
+          entrada.target.classList.add('visivel');
+          observador.unobserve(entrada.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.aparecer').forEach((el, i) => {
+      el.style.transitionDelay = (i % 3) * 0.1 + 's';
+      observador.observe(el);
+    });
+
+    /* b) números que contam */
+    function animarContador(el) {
+      const alvo = Number(el.dataset.alvo);
+      const prefixo = el.dataset.prefixo || '';
+      const duracao = 1800;
+      const inicio = performance.now();
+
+      function passo(agora) {
+        const progresso = Math.min((agora - inicio) / duracao, 1);
+        const suave = 1 - Math.pow(1 - progresso, 3);          // começa rápido e desacelera no final
+        el.textContent = prefixo + Math.round(alvo * suave).toLocaleString('pt-BR');
+        if (progresso < 1) requestAnimationFrame(passo);
+      }
+      requestAnimationFrame(passo);
+    }
+
+    const observadorContadores = new IntersectionObserver((entradas) => {
+      entradas.forEach((entrada) => {
+        if (!entrada.isIntersecting) return;
+        animarContador(entrada.target);
+        observadorContadores.unobserve(entrada.target);
+      });
+    }, { threshold: 0.6 });
+
+    document.querySelectorAll('.contar').forEach((el) => {
+      /* números calculados a partir das listas do site */
+      if (el.dataset.fonte === 'clientes') el.dataset.alvo = Math.floor(CLIENTES.length / 10) * 10;
+      if (el.dataset.fonte === 'cases')    el.dataset.alvo = CASES.length;
+
+      if (semAnimacao) {                                        // quem prefere menos movimento vê o número final
+        el.textContent = (el.dataset.prefixo || '') + el.dataset.alvo;
+        return;
+      }
+      el.textContent = (el.dataset.prefixo || '') + '0';
+      observadorContadores.observe(el);
+    });
+
+    document.getElementById('ano').textContent = new Date().getFullYear();
+  </script>
+
+</body>
+</html>
